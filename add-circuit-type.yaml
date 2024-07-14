@@ -1,0 +1,19 @@
+# Ansible Playbook to create circuit types in NAUTOBOT
+# Note: you need to export NAUTOBOT_URL and NAUTOBOT_TOKEN first Example:
+# export NAUTOBOT_URL=https://192.168.1.1/
+# export NAUTOBOT_token=abcde123456723456!!
+
+- name: "Test Nautobot circuit type"
+  connection: local
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+    - name: Create type within Nautobot with only required information
+      networktocode.nautobot.circuit_type:
+        url: "https://192.168.1.21"
+        token: "2885e91b76f4530672c5173f6b03a6ecad8ada60"
+        validate_certs: no
+        name: DIA
+        state: present
+...

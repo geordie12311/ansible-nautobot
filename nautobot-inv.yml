@@ -1,0 +1,12 @@
+plugin: networktocode.nautobot.inventory
+api_endpoint: http://192.168.1.21
+token: 2885e91b76f4530672c5173f6b03a6ecad8ada60
+validate_certs: False
+config_context: False
+group_by:
+  - device_roles
+  - platforms
+compose:
+  ansible_network_os: platform.slug
+#device_query_filters:
+#  - has_primary_ip: 'true'

@@ -1,0 +1,20 @@
+- name: "Create Nautobot location type"
+  connection: local
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Create location type
+      networktocode.nautobot.location_type:
+        url: http://192.168.1.21
+        token: fa00b2c370cf7814805c140ec71ef0c9ce9202de
+        name: GH-lab
+        description: GH-lab
+        parent:
+          name: UK
+        nestable: false
+        content_types:
+          - "dcim.device"
+        state: present
+        validate_certs: false
+...

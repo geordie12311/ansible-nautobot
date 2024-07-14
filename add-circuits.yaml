@@ -1,0 +1,26 @@
+# Ansible Playbook to add circuits in NAUTOBOT
+# Note: you need to export NAUTOBOT_URL and NAUTOBOT_TOKEN first Example:
+# export NAUTOBOT_URL=https://192.168.1.1/
+# export NAUTOBOT_token=abcde123456723456!!
+- name: "Create Circuits in Nautobot"
+  connection: local
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+    - name: Create circuit within Nautobot
+      networktocode.nautobot.circuit:
+        url: "{{ lookup('env', 'NAUTOBOT_URL') }}"
+        token: "{{ lookup('env', 'NAUTOBOT_TOKEN') }}"
+        validate_certs: no
+        cid: LAB-WAN-Circuit
+        provider: Vaioni
+        circuit_type: DIA
+        status: Active
+        tenant: Nautobot-lab
+        install_date: "2024-07-10"
+        commit_rate: 10000
+        description: LAB WAN Circuit
+        comments: "Built using Ansible Playbook"
+        state: present
+...
