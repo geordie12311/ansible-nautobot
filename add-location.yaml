@@ -1,16 +1,16 @@
-- name: "Test Nautobot location module"
+- name: "Add location to Nautobot"
   connection: local
   hosts: localhost
   gather_facts: False
   tasks:
-    - name: Create location
+    - name: Create location in Nautobot
       networktocode.nautobot.location:
-        url: http://192.168.1.21
-        token: fa00b2c370cf7814805c140ec71ef0c9ce9202de
+        url: "{{ lookup('env', 'NAUTOBOT_URL') }}"
+        token: "{{ lookup('env', 'NAUTOBOT_TOKEN') }}"
+        validate_certs: no
         name: Autobot-lab
         status: Active
         location_type:
           name: Home-lab
         state: present
-        validate_certs: false
 ...
