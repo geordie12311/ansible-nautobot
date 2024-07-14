@@ -1,0 +1,20 @@
+# Ansible Playbook to create a Manufacturer in NAUTOBOT
+# Note: you need to export NAUTOBOT_URL and NAUTOBOT_TOKEN first Example:
+# export NAUTOBOT_URL=https://192.168.1.1/
+# export NAUTOBOT_token=abcde123456723456!!
+
+- name: "Add a Manufacturer to Nautobot"
+  connection: local
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+    - name: Create manufacturer within Nautobot
+      networktocode.nautobot.manufacturer:
+        url: "{{ lookup('env', 'NAUTOBOT_URL') }}"
+        token: "{{ lookup('env', 'NAUTOBOT_TOKEN') }}"
+        validate_certs: no
+        name: Test Manufacturer
+        state: present
+        description: The test manufacturer was added by Ansible
+...
