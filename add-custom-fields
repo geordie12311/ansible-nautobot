@@ -1,0 +1,34 @@
+# Ansible Playbook to create custom fields in NAUTOBOT
+# Note: you need to export NAUTOBOT_URL and NAUTOBOT_TOKEN first Example:
+# export NAUTOBOT_URL=http://192.168.1.1/
+# export NAUTOBOT_token=abcde123456723456!!
+---
+- name: "NAUTOBOT create custom_fields"
+  connection: local
+  hosts: localhost
+
+  tasks:
+    - name: "Task 1: Create a custom for Maintenance Provider"
+      networktocode.nautobot.custom_field:
+        url: "http://192.168.1.21"
+        token: "2885e91b76f4530672c5173f6b03a6ecad8ada60"
+        label: Maintenance_Provider
+        key: "Maintenance"
+        type: text
+        content_types:
+              - dcim.device
+        state: present
+        validate_certs: false
+
+    - name: "Task 2: Create a custom fields Maintenance Renewal Date"
+      networktocode.nautobot.custom_field:
+        url: "https://192.168.1.21"
+        token: "2885e91b76f4530672c5173f6b03a6ecad8ada60"
+        validate_certs: no
+        label: Maintenance_Renewal_date
+        key: "Renewal_date"
+        type: text
+        content_types:
+              - dcim.device
+        state: present
+...
