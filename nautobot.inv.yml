@@ -1,8 +1,8 @@
 plugin: networktocode.nautobot.inventory
-api_endpoint: https//"add url here"
-token: "add token here"
-validate_certs: False
-config_context: False
+api_endpoint: https://192.168.1.21
+token: 2885e91b76f4530672c5173f6b03a6ecad8ada60
+validate_certs: no
+config_context: no
 group_by:
   - device_roles
   - platforms

@@ -1,8 +1,8 @@
 import pynetbox
 import urllib3
 
-NAUTOBOT_SERVER = "add ip address here"
-NAUTOBOT_API_KEY = "add api token here"
+NAUTOBOT_SERVER = "192.168.1.21"
+NAUTOBOT_API_KEY = "2885e91b76f4530672c5173f6b03a6ecad8ada60"
 
 nb_conn = pynetbox.api(url=f"https://{NAUTOBOT_SERVER}", token=NAUTOBOT_API_KEY)
 nb_conn.http_session.verify=False
