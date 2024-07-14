@@ -1,0 +1,25 @@
+# Ansible Playbook to create a location type in NAUTOBOT
+# Note: you need to export NAUTOBOT_URL and NAUTOBOT_TOKEN first Example:
+# export NAUTOBOT_URL=https://192.168.1.1/
+# export NAUTOBOT_token=abcde123456723456!!
+
+- name: "Create Nautobot location type"
+  connection: local
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Create location type
+      networktocode.nautobot.location_type:
+        url: "{{ lookup('env', 'NAUTOBOT_URL') }}"
+        token: "{{ lookup('env', 'NAUTOBOT_TOKEN') }}"
+        validate_certs: no
+        name: GH-lab
+        description: GH-lab
+        parent:
+          name: UK
+        nestable: false
+        content_types:
+          - "dcim.device"
+        state: present
+...
