@@ -1,0 +1,19 @@
+---
+- name: Gather facts from hosts to populate Nautobot
+  connection: network_cli
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Assign serial numbers to hosts
+      networktocode.nautobot.device:
+        url: "{{ lookup('env', 'NAUTOBOT_URL') }}"
+        token: "{{ lookup('env', 'NAUTOBOT_TOKEN') }}"
+        validate_certs: False
+        name: "{{ item }}"
+        serial: "{{ ansible_facts['net_serialnum'] }}"
+        state: present
+      loop: 
+        - "{{ ansible_facts['net_hostname'] }}"
+      delegate_to: localhost
+...
